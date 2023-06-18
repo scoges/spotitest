@@ -22,7 +22,7 @@ const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 
 
         window.onSpotifyWebPlaybackSDKReady = () => {
-            var token = 'access_token';
+            var token = access_token ;
             const player = new Spotify.Player({
                 name: 'Web Playback SDK Quick Start Player',
                 getOAuthToken: cb => { cb(token); },
