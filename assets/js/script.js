@@ -44,7 +44,8 @@ function onPageLoad(){
     }
     refreshRadioButtons();
 
-   
+    
+}
 
 function handleRedirect(){
     let code = getCode();
@@ -354,7 +355,7 @@ function addRadioButton(item, index){
     node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
     document.getElementById("radioButtons").appendChild(node);
 }
-}
+
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = TOKEN;
   const player = new Spotify.Player({
@@ -362,7 +363,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       getOAuthToken: cb => { cb(token); },
       volume: 0.5
   });
-}
+
   // Ready
   player.addListener('ready', ({ device_id }) => {
       console.log('Ready with Device ID', device_id);
@@ -385,9 +386,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       console.error(message);
   });
 
-  document.getElementById('PlaySDK').onclick = function() {
-    player.PlaySDK();
+  document.getElementById('togglePlay').onclick = function() {
+    player.togglePlay();
   };
 
   player.connect();
-
+}
