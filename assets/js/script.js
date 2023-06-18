@@ -21,6 +21,33 @@ const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 
 
+
+
+
+
+
+function onPageLoad(){
+    client_id = localStorage.getItem("client_id");
+    client_secret = localStorage.getItem("client_secret");
+    if ( window.location.search.length > 0 ){
+        handleRedirect();
+    }
+    else{
+        access_token = localStorage.getItem("access_token");
+        if ( access_token == null ){
+            // we don't have an access token so present token section
+            document.getElementById("tokenSection").style.display = 'block';  
+        }
+        else {
+            // we have an access token so present device section
+            document.getElementById("deviceSection").style.display = 'block';  
+            refreshDevices();
+            refreshPlaylists();
+            currentlyPlaying();
+        }
+    }
+    refreshRadioButtons();
+}
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = '[My access token]';
   const player = new Spotify.Player({
@@ -57,33 +84,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
   player.connect();
 }
-
-
-
-
-function onPageLoad(){
-    client_id = localStorage.getItem("client_id");
-    client_secret = localStorage.getItem("client_secret");
-    if ( window.location.search.length > 0 ){
-        handleRedirect();
-    }
-    else{
-        access_token = localStorage.getItem("access_token");
-        if ( access_token == null ){
-            // we don't have an access token so present token section
-            document.getElementById("tokenSection").style.display = 'block';  
-        }
-        else {
-            // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';  
-            refreshDevices();
-            refreshPlaylists();
-            currentlyPlaying();
-        }
-    }
-    refreshRadioButtons();
-}
-
 function handleRedirect(){
     let code = getCode();
     fetchAccessToken( code );
