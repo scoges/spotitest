@@ -43,6 +43,43 @@ function onPageLoad(){
         }
     }
     refreshRadioButtons();
+
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const token = TOKEN;
+      const player = new Spotify.Player({
+          name: 'Web Playback SDK Quick Start Player',
+          getOAuthToken: cb => { cb(token); },
+          volume: 0.5
+      });
+    }
+      // Ready
+      player.addListener('ready', ({ device_id }) => {
+          console.log('Ready with Device ID', device_id);
+      });
+    
+      // Not Ready
+      player.addListener('not_ready', ({ device_id }) => {
+          console.log('Device ID has gone offline', device_id);
+      });
+    
+      player.addListener('initialization_error', ({ message }) => {
+          console.error(message);
+      });
+    
+      player.addListener('authentication_error', ({ message }) => {
+          console.error(message);
+      });
+    
+      player.addListener('account_error', ({ message }) => {
+          console.error(message);
+      });
+    
+      document.getElementById('PlaySDK').onclick = function() {
+        player.PlaySDK();
+      };
+    
+      player.connect();
+    
 }
 
 function handleRedirect(){
@@ -354,38 +391,3 @@ function addRadioButton(item, index){
     document.getElementById("radioButtons").appendChild(node);
 }
 
-window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'BQDpww2of11YW2tipNi5P1-zgvuUjBn5-QE4WZOrnpiwUOgWxf6bc4nIqQaPhaF9NkyQE40xt_fxfzGiQbxIYbyHzsoOWvix8iVvezUme4Sz0983pK0nNjKR13S6sf_pzWXgNntP9a7hHwZ-vRNmpTZh9MKh6axFLN9Hukw4lVPFfVIju3IoqH_YyHkeCPGXfOEnUAI2N3TN8_c3RmFS4wNysvNY';
-  const player = new Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
-      getOAuthToken: cb => { cb(token); },
-      volume: 0.5
-  });
-}
-  // Ready
-  player.addListener('ready', ({ device_id }) => {
-      console.log('Ready with Device ID', device_id);
-  });
-
-  // Not Ready
-  player.addListener('not_ready', ({ device_id }) => {
-      console.log('Device ID has gone offline', device_id);
-  });
-
-  player.addListener('initialization_error', ({ message }) => {
-      console.error(message);
-  });
-
-  player.addListener('authentication_error', ({ message }) => {
-      console.error(message);
-  });
-
-  player.addListener('account_error', ({ message }) => {
-      console.error(message);
-  });
-
-  document.getElementById('PlaySDK').onclick = function() {
-    player.PlaySDK();
-  };
-
-  player.connect();
