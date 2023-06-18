@@ -103,7 +103,8 @@
             <!-- Content for lyricconfirm section -->
         </section>
     </section>
-    <script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+   <script>
         window.onSpotifyWebPlaybackSDKReady = () => {
             const token = '[My access token]';
             const player = new Spotify.Player({
@@ -141,7 +142,7 @@
             player.connect();
         }
     </script>
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    
     <script src="./js/script.js"></script>
 </body>
 </html>
