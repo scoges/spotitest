@@ -364,11 +364,14 @@ function addRadioButton(item, index){
     node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
     document.getElementById("radioButtons").appendChild(node);
 }
+
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = "access_token" ;
-  playerRef.current = new window.Spotify.Player({ name, getOAuthToken: async (cb) => 
-    { const token = await refresh(acc); cb(token); }, });
-  };
+  const token = 'BQD3GRe_jqjngv1c8AsCllTKLMzZo_wzS-cc8S71Fn2Ne0W91O56_Wf-ok5L0xtnrhN1U1eggpHzK1VyiZ0nATHpnnvFPfAfzCu33w5lEUE8LLCgPnBfGDJ6ROk2Tf1T-CboZoCWZj33wjxlkFzaPEH3xVUtTJ8soZKCahOGsulcyA88QomEqSb1788Q55pJKRiDmtR-yfn37Mokaumdkr91sjVj';
+  const player = new Spotify.Player({
+      name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); },
+      volume: 0.5
+  });
 
   // Ready
   player.addListener('ready', ({ device_id }) => {
@@ -392,5 +395,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       console.error(message);
   });
 
-  document.getElementById("PlaySDK").onclick = function() {
-    player.togglePlay()}
+  document.getElementById('PlaySDK').onclick = function() {
+    player.PlaySDK();
+  };
+
+  player.connect();
+}
