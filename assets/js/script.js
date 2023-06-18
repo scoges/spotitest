@@ -395,7 +395,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   });
 
   document.getElementById('PlaySDK').onclick = function() {
-    player.togglePlay();
+    player.PlaySDK();
   };
 
   player.connect();
