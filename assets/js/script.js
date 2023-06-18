@@ -42,7 +42,7 @@ function onPageLoad(){
       }
   }
   window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'https://accounts.spotify.com/api/token';
+    const token = 'access_token';
     const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); },
