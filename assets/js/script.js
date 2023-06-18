@@ -366,11 +366,9 @@ function addRadioButton(item, index){
 }
 window.onSpotifyWebPlaybackSDKReady = () => {
   const token = "access_token" ;
-  const player = new Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
-      getOAuthToken: cb => { cb(token); },
-      volume: 0.5
-  });
+  playerRef.current = new window.Spotify.Player({ name, getOAuthToken: async (cb) => 
+    { const token = await refresh(acc); cb(token); }, });
+  };
 
   // Ready
   player.addListener('ready', ({ device_id }) => {
@@ -394,13 +392,5 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       console.error(message);
   });
 
-  document.getElementById('togglePlay').onclick = function() {
-    player.togglePlay();
-  };
-
-  player.connect();
-}
-
-
-
-
+  document.getElementById("PlaySDK").onclick = function() {
+    player.togglePlay()}
