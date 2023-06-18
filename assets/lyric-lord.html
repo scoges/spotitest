@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Metadata + Links -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <title>Will you be the Lyric Lord?!</title>
+</head>
+<!-- Body with class for background -->
+<body class="box has-background-primary-dark">
+<!-- Section content with classes for header and id's for music player, lyric scroll and confirm -->    
+    <section class="box has-text-centered">
+
+        <h1 class="title has-text-centered has-text-primary has-background-primary-light has text-success">Lyric Lord</h1>
+        <div class="col">
+            <div class="mb-3">
+                <label for="clientId" class="form-label">Client ID</label>
+                <input type="text" class="form-control" id="clientId" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="clientSecret" class="form-label">Client Secret</label>
+                <input type="text" class="form-control" id="clientSecret" placeholder="">
+            </div>
+            <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization"><br/>
+        </div>
+        <div class="mb-3">
+            <label for="playlists" class="form-label">Playlists</label>
+            <select id="playlists" class="form-control">
+            </select>
+            <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="tracks" class="form-label">Tracks</label>
+            <select id="tracks" class="form-control">
+            </select>
+            <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
+        </div>
+
+        <div class="mb-3">
+            <label for="tracks" class="form-label">Album</label>
+            <input id="album" class="form-control">
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
+                <input type="button" class="btn btn-dark" onclick="play()" value="Play">
+                <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
+                <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
+                <input type="button" class="btn btn-dark" onclick="next()" value="Next">
+            </div>
+        </div>
+
+
+        <div class="row  mt-3">
+            <div class="col">
+                <h1> Currently Playing</h1>
+                <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
+                <div>
+                    <img id="albumImage" src="">
+                    <div id="trackTitle"></div>
+                    <div id="trackArtist"></div>
+                </div>
+
+            </div>
+        </div>
+    
+
+        
+        <section id="Lyricscroll">
+            <!-- Content for Lyricscroll section -->
+        </section>
+
+        <input class="input is-rounded is-primary is-centered" type="text" placeholder="Enter lyrics here">
+
+        <section id="lyricconfirm">
+            <!-- Content for lyricconfirm section -->
+        </section>
+    </section>
+   
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
