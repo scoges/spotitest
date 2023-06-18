@@ -211,22 +211,11 @@ function play(){
     callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
-function shuffle(){
-    callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
-    play(); 
-}
 
 function pause(){
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
 
-function next(){
-    callApi( "POST", NEXT + "?device_id=" + deviceId(), null, handleApiResponse );
-}
-
-function previous(){
-    callApi( "POST", PREVIOUS + "?device_id=" + deviceId(), null, handleApiResponse );
-}
 
 function transfer(){
     let body = {};
@@ -366,13 +355,13 @@ function addRadioButton(item, index){
 }
 
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'BQD3GRe_jqjngv1c8AsCllTKLMzZo_wzS-cc8S71Fn2Ne0W91O56_Wf-ok5L0xtnrhN1U1eggpHzK1VyiZ0nATHpnnvFPfAfzCu33w5lEUE8LLCgPnBfGDJ6ROk2Tf1T-CboZoCWZj33wjxlkFzaPEH3xVUtTJ8soZKCahOGsulcyA88QomEqSb1788Q55pJKRiDmtR-yfn37Mokaumdkr91sjVj';
+  const token = 'BQDpww2of11YW2tipNi5P1-zgvuUjBn5-QE4WZOrnpiwUOgWxf6bc4nIqQaPhaF9NkyQE40xt_fxfzGiQbxIYbyHzsoOWvix8iVvezUme4Sz0983pK0nNjKR13S6sf_pzWXgNntP9a7hHwZ-vRNmpTZh9MKh6axFLN9Hukw4lVPFfVIju3IoqH_YyHkeCPGXfOEnUAI2N3TN8_c3RmFS4wNysvNY';
   const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); },
       volume: 0.5
   });
-
+}
   // Ready
   player.addListener('ready', ({ device_id }) => {
       console.log('Ready with Device ID', device_id);
@@ -400,4 +389,3 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   };
 
   player.connect();
-}
