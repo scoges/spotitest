@@ -365,7 +365,7 @@ function addRadioButton(item, index){
         
 
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = localStorage.getItem("refresh_token");
+  const token = "Playtoken";
   const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); },
