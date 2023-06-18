@@ -185,12 +185,7 @@ function addPlaylist(item){
   document.getElementById("playlists").appendChild(node); 
 }
 
-function removeAllItems( elementId ){
-  let node = document.getElementById(elementId);
-  while (node.firstChild) {
-      node.removeChild(node.firstChild);
-  }
-}
+
 
 function play(){
   let playlist_id = document.getElementById("playlists").value;
@@ -364,3 +359,41 @@ function addRadioButton(item, index){
 }
         
 
+
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = '#Playtoken';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+            });
+
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.addListener('initialization_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('authentication_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('account_error', ({ message }) => {
+                console.error(message);
+            });
+
+            document.getElementById('togglePlay').onclick = function() {
+              player.togglePlay();
+            };
+
+            player.connect();
+        }
+ 
