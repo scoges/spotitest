@@ -15,20 +15,18 @@
     <section class= "box has-text-centered">
 
         <h1 class="title has-text-centered has-text-primary has-background-primary-light has text-success">Lyric Lord</h1>
-        <div class="container">
+        <div class="box">
 
-            <div id="tokenSection" class="row">
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="clientId" class="form-label">Client ID</label>
-                        <input type="text" class="form-control" id="clientId" placeholder="">
+            <div id="tokenSection" class="row ">
+              
+                <div class="col is-primary is-rounded">
+                    <div class="mb-3 is-primary is-rounded">
+                        <label for="clientId" class="form-label has-text-primary">Client ID</label>
+                        <input type="text" class="form-control is-primary is-rounded" id="clientId" placeholder="">
                     </div>
-                    <div class="mb-3">
-                        <label for="clientSecret" class="form-label">Client Secret</label>
-                        <input type="text" class="form-control" id="clientSecret" placeholder="">
+                    <div class="mb-3 is-primary is-rounded">
+                        <label for="clientSecret" class="form-label has-text-primary">Client Secret</label>
+                        <input type="text" class="form-control is-primary is-rounded" id="clientSecret" placeholder="">
                     </div>
                     <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization"><br/>
                 </div>
@@ -40,7 +38,7 @@
     
                     <div class="mb-3">
                         <label for="devices" class="form-label">Devices</label>
-                        <select id="devices" class="form-control">
+                        <select id="devices" class="form-control is-primary is-rounded">
                         </select>
                         <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
                         <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
@@ -87,13 +85,6 @@
                                 <div id="trackArtist"></div>
                             </div>
     
-                        </div>
-                    </div>
-    
-                    <div class="row  mt-3">
-                        <div class="col">
-                            <div id="radioButtons"></div>
-                            <input type="button" class="btn btn-dark" onclick="saveNewRadioButton()" value="Add">
                         </div>
                     </div>
                 </div>
