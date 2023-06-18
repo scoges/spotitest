@@ -20,6 +20,7 @@ const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 
+
 function onPageLoad(){
   client_id = localStorage.getItem("client_id");
   client_secret = localStorage.getItem("client_secret");
@@ -185,7 +186,12 @@ function addPlaylist(item){
   document.getElementById("playlists").appendChild(node); 
 }
 
-
+function removeAllItems( elementId ){
+  let node = document.getElementById(elementId);
+  while (node.firstChild) {
+      node.removeChild(node.firstChild);
+  }
+}
 
 function play(){
   let playlist_id = document.getElementById("playlists").value;
@@ -356,12 +362,10 @@ function addRadioButton(item, index){
   node.innerText = index;
   node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
   document.getElementById("radioButtons").appendChild(node);
-}
-        
 
 
         window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = localStorage.getItem("refresh_token", refresh_token);
+            const token = 'TOKEN';
             const player = new Spotify.Player({
                 name: 'Web Playback SDK Quick Start Player',
                 getOAuthToken: cb => { cb(token); },
@@ -395,5 +399,5 @@ function addRadioButton(item, index){
             };
 
             player.connect();
-        }
+        }}
  
