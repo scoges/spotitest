@@ -30,10 +30,7 @@
                 
                 <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization"><br/>
            
-                <div class="mb-3">
-                    <label for="Playtoken" class="form-label">SDK Token</label>
-                    <input type="text" class="form-control" id="Playtoken" placeholder="">
-                </div>
+                
             </div>
 
         </div>
@@ -98,44 +95,7 @@
     <button id="togglePlay">Toggle Play</button>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script>
-        window.onSpotifyWebPlaybackSDKReady = () => {
-            const token = '#Playtoken';
-            const player = new Spotify.Player({
-                name: 'Web Playback SDK Quick Start Player',
-                getOAuthToken: cb => { cb(token); },
-                volume: 0.5
-            });
-
-            // Ready
-            player.addListener('ready', ({ device_id }) => {
-                console.log('Ready with Device ID', device_id);
-            });
-
-            // Not Ready
-            player.addListener('not_ready', ({ device_id }) => {
-                console.log('Device ID has gone offline', device_id);
-            });
-
-            player.addListener('initialization_error', ({ message }) => {
-                console.error(message);
-            });
-
-            player.addListener('authentication_error', ({ message }) => {
-                console.error(message);
-            });
-
-            player.addListener('account_error', ({ message }) => {
-                console.error(message);
-            });
-
-            document.getElementById('togglePlay').onclick = function() {
-              player.togglePlay();
-            };
-
-            player.connect();
-        }
-    </script>  
+    
         
         <section id="Lyricscroll">
             <!-- Content for Lyricscroll section -->
