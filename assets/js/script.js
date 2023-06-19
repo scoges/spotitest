@@ -371,11 +371,12 @@ function addRadioButton(item, index){
   node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
   document.getElementById("radioButtons").appendChild(node);
 }
-
+function webplay(){
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'access_token';
+  const token = document.getElementById("toke").value;
   const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); },
       volume: 0.5
   });
 
@@ -405,4 +406,4 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.togglePlay();
   };
 
-  player.connect();  }
+  player.connect();  }}
