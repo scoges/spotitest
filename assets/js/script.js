@@ -373,7 +373,8 @@ function addRadioButton(item, index){
 }
 function webplay(){
 window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = document.getElementById("toke").value;
+  
+  const token = document.getElementById("toke");
   const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); },
