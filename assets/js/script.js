@@ -376,7 +376,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   const token = 'access_token';
   const player = new Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
-      getOAuthToken: cb => { cb(token); },
       volume: 0.5
   });
 
